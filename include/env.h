@@ -32,8 +32,11 @@ struct _env* Env_a(char* filePath) {
         return Env_e();
     }
     struct _env* current = (struct _env*)malloc(sizeof(struct _env));
+    printf("111\n");
     strcpy(current->currentdir, filePath);
+    printf("111\n");
     current->currentDict = Dict();
+    printf("111");
     filedict(current->currentDict, filePath, '=', '\n');
     return current;
 }

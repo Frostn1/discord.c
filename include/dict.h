@@ -25,9 +25,14 @@ typedef struct _dict {
 } dict;
 
 struct _dict* Dict() {
-    struct _dict* newDict = (struct _dict*)malloc(sizeof(struct _dict));
+    printf("222\n");
+    // struct _dict* newDict = (struct _dict*)malloc(sizeof(dict));
+    dict* newDict = (dict*)malloc(sizeof(dict));
+    printf("222\n");
     newDict->_keys = (char**)malloc(sizeof(char));
+    printf("222\n");
     newDict->_values = (char**)malloc(sizeof(char));
+    printf("222\n");
     newDict->_size = 0;
     return newDict;
 }

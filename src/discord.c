@@ -8,7 +8,9 @@ struct _client Client() {
 }
 
 int main(int argc, char** argv, char** envio) {
+    printf("hell");
     struct _env* currentEnv = Env_a("D:\\Programming\\Projects\\discord.c\\src\\e.env");
+    printf("oo world");
     char* key = get(currentEnv->currentDict, "DISCORDBOT_ID");
     printf("key is %s\n",key);
     free(key);
