@@ -10,6 +10,7 @@
 
 typedef struct _env {
     char* currentdir;
+    // Dict of keys and values
 }env;
 
 struct _env Env_e() {
