@@ -3,7 +3,7 @@
 
 typedef struct _client {
 
-}client;
+} client;
 
 struct _client Client();
 

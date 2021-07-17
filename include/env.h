@@ -23,12 +23,14 @@ struct _env Env_e() {
     }
     strcpy(current.currentdir, filePath);
     current.currentDict = Dict();
+    filedict(current.currentDict, filePath, '=', '\n');
 }
 
 struct _env Env_a(char* filePath) {
     struct _env current;
     strcpy(current.currentdir, filePath);
     current.currentDict = Dict();
+    filedict(current.currentDict, filePath, '=', '\n');
 }
 
 char* grab(struct _env dispatcher,char* token) {
