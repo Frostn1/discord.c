@@ -10,7 +10,7 @@
 
 typedef struct _env {
     char* currentdir;
-
+    struct _dict* currentDict;
     // Dict of keys and values
 }env;
 
@@ -22,11 +22,13 @@ struct _env Env_e() {
         exit(0);
     }
     strcpy(current.currentdir, filePath);
+    current.currentDict = Dict();
 }
 
 struct _env Env_a(char* filePath) {
     struct _env current;
     strcpy(current.currentdir, filePath);
+    current.currentDict = Dict();
 }
 
 char* grab(struct _env dispatcher,char* token) {
