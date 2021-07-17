@@ -6,10 +6,11 @@
 #include <string.h>
 #include <limits.h>
 #include <direct.h>
-
+#include "dict.h"
 
 typedef struct _env {
     char* currentdir;
+
     // Dict of keys and values
 }env;
 
