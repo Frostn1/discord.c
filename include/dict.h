@@ -32,7 +32,13 @@ struct _dict* Dict() {
     return newDict;
 }
 
+int has(struct _dict* dict, char* key) {
+    for (int i = 0; i < dict->_size; i++)
+        if(!strcmp(dict->_keys[i], key)) return 1;
+    return 0;
+}
 void add(struct _dict* dict, char* key,char* value) {
+    printf("key %s\nvalue %s\n",key, value);
     if(!strcmp(key, "")) {
         printf("dict error : key empty\n");
         exit(0);
@@ -49,12 +55,11 @@ void add(struct _dict* dict, char* key,char* value) {
     strcpy(dict->_values[dict->_size], value);
 
 }
-int has(struct _dict* dict, char* key) {
-    for (int i = 0; i < dict->_size; i++)
-        if(!strcmp(dict->_keys[i], key)) return 1;
-    return 0;
-}
 char* get(struct _dict* dict, char* key) {
+    if(!dict->_size) {
+        printf("dict error : dict empty\n");
+        exit(0);
+    }
     if(!strcmp(key, "")) {
         printf("dict error : key empty\n");
         exit(0);
@@ -73,14 +78,10 @@ void filedict(struct _dict* dict, char* filepath, char spacer, char del) {
     char* currentKey = (char*)malloc(sizeof(char)), *currentValue = (char*)malloc(sizeof(char));
     currentKey[0] = '\0';
     currentValue[0] = '\0';
-    for (size_t i = 0; i < bufferSize; i++) {
+    for (int i = 0; i < bufferSize; i++) {
         if(buffer[i] == spacer) {
-            // currentKey = (char*)realloc(currentKey, sizeof(char)*(++keySize));
-            // currentKey[keySize-1] = '\0';
             currentCopy = !currentCopy;
-        } else if(buffer[i] = del) {
-            // currentValue = (char*)realloc(currentValue, sizeof(char)*(++valueSize));
-            // currentValue[valueSize-1] = '\0';
+        } else if(buffer[i] == del) {
             add(dict, currentKey, currentValue);
             currentKey = (char*)realloc(currentKey, sizeof(char));
             currentValue = (char*)realloc(currentValue, sizeof(char));
@@ -98,4 +99,6 @@ void filedict(struct _dict* dict, char* filepath, char spacer, char del) {
     }
     
 }
+
+
 #endif // !DICT_H

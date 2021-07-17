@@ -2,6 +2,7 @@
     "files.associations": {
         "*.eclip": "eclip",
         "*.piv": "Pivot",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "agile.h": "c"
     }
 }

@@ -14,35 +14,32 @@ typedef struct _env {
     // Dict of keys and values
 }env;
 
-struct _env Env_e() {
-    struct _env current;
+struct _env* Env_e() {
+    struct _env* current = (struct _env*)malloc(sizeof(struct _env));
     char filePath[_MAX_PATH];
     if(!_getcwd(filePath, sizeof(filePath))) {
-        printf("_getcew error\n");
+        printf("_getcwd error\n");
         exit(0);
     }
-    strcpy(current.currentdir, filePath);
-    current.currentDict = Dict();
-    filedict(current.currentDict, filePath, '=', '\n');
+    strcpy(current->currentdir, filePath);
+    current->currentDict = Dict();
+    filedict(current->currentDict, current->currentdir, '=', '\n');
+    return current;
 }
 
-struct _env Env_a(char* filePath) {
-    struct _env current;
-    strcpy(current.currentdir, filePath);
-    current.currentDict = Dict();
-    filedict(current.currentDict, filePath, '=', '\n');
+struct _env* Env_a(char* filePath) {
+    if(!strcmp(filePath, "")) {
+        return Env_e();
+    }
+    struct _env* current = (struct _env*)malloc(sizeof(struct _env));
+    strcpy(current->currentdir, filePath);
+    current->currentDict = Dict();
+    filedict(current->currentDict, filePath, '=', '\n');
+    return current;
 }
 
 char* grab(struct _env dispatcher,char* token) {
-
+    return get(dispatcher.currentDict, token);
 }
 
-
-#define Env(...) OVERLOAD(Env, (__VA_ARGS__), \
-    (Env_e, (void)), \
-    (Env_a, (char*)), \
-)
-
-#define OVERLOAD_ARG_TYPES (void, char*)
-#define OVERLOAD_FUNCTIONS (Env)
 #endif // !ENV_H
