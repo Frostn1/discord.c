@@ -1,8 +1,8 @@
 #ifndef DICT_H
 #define DICT_H
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 #include "tool.h"
 // Find a way to compare types when adding pairs to the dict
 // typedef struct _value {
@@ -25,9 +25,9 @@ typedef struct _dict {
 } dict;
 
 struct _dict* Dict() {
-    printf("222\n");
+    printf("2223\n");
     // struct _dict* newDict = (struct _dict*)malloc(sizeof(dict));
-    dict* newDict = (dict*)malloc(sizeof(dict));
+    struct _dict* newDict = (struct _dict*)malloc(sizeof(struct _dict));
     printf("222\n");
     newDict->_keys = (char**)malloc(sizeof(char));
     printf("222\n");
