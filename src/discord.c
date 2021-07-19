@@ -1,18 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include "../include/discord.h"
-#include "../include/env.h"
-#include "../include/dict.h"
+#include "discord.h"
+#include "env.h"
+#include "dict.h"
 struct _client Client() {
-    struct _client newClient;
+    struct _client newClient = {0};
     return newClient;
 }
 
 int main(int argc, char** argv, char** envio) {
-    printf("hell");
     struct _env* currentEnv = Env_a("D:\\Programming\\Projects\\discord.c\\src\\e.env");
-    printf("oo world");
     char* key = get(currentEnv->currentDict, "DISCORDBOT_ID");
     printf("key is %s\n",key);
-    free(key);
     return 0;
 }
