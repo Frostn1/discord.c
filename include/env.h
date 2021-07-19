@@ -8,35 +8,33 @@
 #include <direct.h>
 #include "dict.h"
 
+
+
 typedef struct _env {
     char* currentdir;
     struct _dict* currentDict;
+    void (*config)(struct _env*);
     // Dict of keys and values
 }env;
 
-struct _env* Env_e() {
-    struct _env* current = (struct _env*)malloc(sizeof(struct _env));
-    char filePath[_MAX_PATH];
-    if(!_getcwd(filePath, sizeof(filePath))) {
-        printf("_getcwd error\n");
-        exit(0);
-    }
-    current->currentdir = (char*)malloc(sizeof(char) * (strlen(filePath) + 1));
-    strcpy(current->currentdir, filePath);
-    current->currentDict = Dict();
+void config_env(struct _env* current) {
+    printf("got here\n");
     filedict(current->currentDict, current->currentdir, '=', '\n');
-    return current;
 }
 
 struct _env* Env_a(char* filePath) {
-    if(!strcmp(filePath, "")) {
-        return Env_e();
-    }
     struct _env* current = (struct _env*)malloc(sizeof(struct _env));
+    if(!strcmp(filePath, "")) {
+        char filePath[_MAX_PATH];
+        if(!_getcwd(filePath, sizeof(filePath))) {
+            printf("_getcwd error\n");
+            exit(0);
+        }
+    }
     current->currentdir = (char*)malloc(sizeof(char) * (strlen(filePath) + 1));
     strcpy(current->currentdir, filePath);
     current->currentDict = Dict();
-    filedict(current->currentDict, filePath, '=', '\n');
+    current->config = &config_env;
     return current;
 }
 

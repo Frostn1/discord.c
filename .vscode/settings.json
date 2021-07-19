@@ -3,6 +3,9 @@
         "*.eclip": "eclip",
         "*.piv": "Pivot",
         "stdio.h": "c",
-        "agile.h": "c"
+        "agile.h": "c",
+        "discord.h": "c",
+        "env.h": "c",
+        "dict.h": "c"
     }
 }
