@@ -1,17 +1,19 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
 #include "../include/discord.h"
-#include "../include/env.h"
-#include "../include/dict.h"
-struct _client Client() {
-    struct _client newClient = {0};
+
+struct _client* Client() {
+    printf("\nhere2");
+    struct _client* newClient = (struct _client*)malloc(sizeof(struct _client));
+    printf("\nhere3");
+    newClient->on = &on_f;
     return newClient;
 }
 
-int main(int argc, char** argv, char** envio) {
-    struct _env* currentEnv = Env_a("D:\\Programming\\Projects\\discord.c\\src\\e.env");
-    currentEnv->config(currentEnv);
-    char* key = get(currentEnv->currentDict, "DISCORDBOT_ID");
-    printf("key is %s\n",key);
-    return 0;
+void on_f(struct _client* client, char* command, onFunction func) {
+    command = lower(command);
+    if(!strcmp(command, "")) {
+        printf("on error : command empty");
+        exit(0);
+    } else if(!strcmp(command, "ready")) {
+        func(client);
+    }
 }
