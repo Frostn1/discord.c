@@ -8,7 +8,6 @@ void onOverload(struct _client* client) {
 int main(int argc, char** argv, char** envio) {
     struct _env* currentEnv = Env_a("D:\\Programming\\Projects\\discord.c\\src\\e.env");
     currentEnv->config(currentEnv);
-    printf("here");
     struct _client* newClient = Client();
     newClient->on(newClient, "ready", onOverload);
     return 0;

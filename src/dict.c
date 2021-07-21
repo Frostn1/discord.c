@@ -14,7 +14,6 @@ int has(struct _dict* dict, char* key) {
     return 0;
 }
 void add(struct _dict* dict, char* key, char* value) {
-    printf("key %s\nvalue %s\n", key, value);
     if (!strcmp(key, "")) {
         printf("dict error : key empty\n");
         exit(0);
