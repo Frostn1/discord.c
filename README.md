@@ -1,1 +1,2 @@
-# Discord.c - Discord Api For C Language
+# Discord.c
+Discord api for the C language written completley in C.
